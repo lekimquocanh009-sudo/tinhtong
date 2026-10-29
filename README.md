@@ -9,12 +9,13 @@ Tài liệu và quy tắc đã được xác nhận, cập nhật ngày **29/10/
 
 ## Các điểm đã chốt
 
-- Đọc cả ảnh và TXT của từng nhóm; tách riêng ngày và miền.
+- Thực hiện tuần tự: phân tích ảnh và lưu một file JSON; phân tích TXT và lưu một file JSON khác; đọc lại cả hai file để tính tổng, dò trúng và xuất Excel. Tách riêng từng nhóm, ngày và miền.
 - Lô 1k/1n = 1 điểm. Chỉ quy tiền hoặc thưởng khi có hệ số được người dùng xác nhận.
 - A/B 2 số miền Nam/Trung: A ×1, B ×1. Miền Bắc: A ×4, B ×1.
 - A/B 3 số miền Nam/Trung: A ×1, B ×1. **Chỉ miền Bắc A ×3, B ×1.**
 - Đọc mức chung cho toàn bộ nhóm số trước khi tách khoản; không tự gán mỗi dòng một loại.
-- Đá thường quy về lô; ĐX 2đ và ĐX 3đ giữ riêng. Dò đá theo cặp trúng, không lấy tích số lần về hai con.
+- Đá thường quy về lô; ĐX 2đ và ĐX 3đ giữ riêng. Đá thường trúng trong một đài: số cặp = min(số lần về mỗi con). Hai con đều về hai lần thì có hai cặp trúng, không lấy tích thành bốn cặp.
+- Theo quy ước người dùng, thứ Năm An Giang là đài chính; **2ĐP = Tây Ninh + Bình Thuận**.
 - Phần tạm đọc được tô vàng ở đầu vào và kết quả chịu ảnh hưởng. Nội dung hoàn toàn thiếu thì ghi chưa tính được.
 - Câu lệnh **“hãy tính tiền”** bao gồm tính tổng, dò số trúng và xuất Excel đã điền kết quả.
 

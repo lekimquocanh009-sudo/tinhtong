@@ -5,7 +5,7 @@
 Khi người dùng nhắn **“hãy tính tiền”** (không phân biệt hoa/thường, có thể có dấu ngoặc), hiểu là yêu cầu thực hiện ngay toàn bộ quy trình **đọc nguồn → tính tổng → dò số trúng → xuất Excel đã điền kết quả** trong dự án này. Người dùng đã xác nhận lệnh này bao gồm dò số trúng, không chờ nhắc dò riêng. Không chỉ giải thích cách làm hoặc hỏi lại có muốn bắt đầu hay không.
 
 1. Đọc `AnhCacNhom/HUONG_DAN_TINH_TONG.md` để áp dụng các quy tắc người dùng đã xác nhận.
-2. Kiểm kê lại từng thư mục nhóm, ngày dữ liệu, toàn bộ ảnh và TXT đang tồn tại trong `AnhCacNhom`. Đọc các nguồn hiện có; không lấy tổng hoặc tên nhóm của lần trước làm dữ liệu mới. Nếu có nhiều ngày, tách riêng từng ngày, không cộng lẫn ngày.
+2. Kiểm kê lại từng thư mục nhóm, ngày dữ liệu, toàn bộ ảnh và TXT đang tồn tại trong `AnhCacNhom`. Đọc các nguồn hiện có; không lấy tổng hoặc tên nhóm của lần trước làm dữ liệu mới. Nếu có nhiều ngày, tách riêng từng ngày, không cộng lẫn ngày. Trước khi cộng tổng, bắt buộc lưu riêng bản phân tích ảnh và bản phân tích TXT theo quy trình ba bước dưới đây.
 3. Tính từng khoản Lô, A, B, AB/XC, đá xiên, đá thường/đá thẳng. Cộng đúng số lượng số, cặp và đài. Hàng 1 = 10–19; hàng 2 = 20–29; XC = AB. Áp dụng hệ số theo miền và các quy tắc khác trong hướng dẫn, không tự thêm hệ số thu tiền/trả thưởng.
    AB 3 số: theo xác nhận sửa ngày 29/10/2026, **chỉ miền Bắc A ×3, B ×1; miền Nam/Trung A ×1, B ×1**. Dò A ba số cuối giải6, B ba số cuối đặc biệt. Không áp dụng A×4 của Bắc 2 số cho Bắc3 số. Lô/A/B giữ mức gốc khi tính trúng; đá tính theo từng cặp trúng, không lấy tích số lần về hai con.
 4. Bỏ tin không liên quan tới các loại trên. Loại bản xuất trùng có bằng chứng; tin `[Ảnh]` chỉ tham chiếu ảnh, không tính thêm. Không tự xóa khoản chỉ vì trùng số hoặc trùng giờ.
@@ -20,6 +20,22 @@ Khi người dùng nhắn **“hãy tính tiền”** (không phân biệt hoa/t
 Các script `calc_txt27.mjs`, `build_txt27_excel.mjs` và các script ngày khác là công cụ cho bộ nguồn đã đọc ở lần trước. Trước khi tái sử dụng, kiểm tra và cập nhật bản đọc cho nguồn/ngày thực tế; không chạy nguyên dữ liệu cũ rồi nhận là đã đọc bộ mới.
 
 Lưu quy tắc mới người dùng xác nhận vào `AnhCacNhom/HUONG_DAN_TINH_TONG.md` để dùng cho lần tiếp theo. Phân biệt quy tắc chung với ngoại lệ chỉ áp dụng cho một phiếu/ngày.
+
+## Xác nhận mới từ bảng chuẩn Hạ 29/10/2026
+
+- Thứ Năm: An Giang chính; 2ĐP = Tây Ninh + Bình Thuận theo quy ước người dùng.
+- Đá thường: số cặp trúng trong một đài = min(số lần về mỗi con). Bắc52–49 đá2, mỗi con về2 lần =>2 cặp, mức trúng4; không chặn tối đa một cặp và không lấy tích số lần về.
+- Trung ảnh16:58:38 dòng57–75 là đá thường1 tại một đài Quảng Bình; không phải ĐX hai đài.
+
+## Quy trình ba bước bắt buộc
+
+Người dùng xác nhận ngày 29/10/2026: **phân tích ảnh → ghi một file; phân tích tin nhắn TXT → ghi một file khác; sau đó tính tổng từ cả hai file**. Thực hiện tuần tự cho từng nhóm/ngày:
+
+1. **Phân tích ảnh:** đọc hết ảnh hiện có, ghi từng nguồn và từng khoản vào `AnhCacNhom/PHAN_TICH_ANH_<nhom>_<ngay>.json`. Lưu số/cặp, mức gốc, loại, miền/đài, phạm vi mức chung, dòng gạch bỏ, giả định và nguồn chưa đọc được. Ảnh tổng/biên nhận cũng ghi rõ lý do không cộng. Lưu file xong mới sang bước 2.
+2. **Phân tích TXT:** đọc toàn bộ TXT hiện có và ghi riêng vào `AnhCacNhom/PHAN_TICH_TXT_<nhom>_<ngay>.json`. Giữ giờ gửi, nội dung gốc, từng khoản đã tách, tin tham chiếu ảnh, tin xuất trùng và tin chưa đọc được. Nếu trùng khoản trong ảnh, ghi mã nguồn ảnh liên quan cùng bằng chứng, không tự bỏ chỉ vì trùng số.
+3. **Tính tổng hai file:** đọc lại cả hai file đã lưu trên đĩa rồi mới cộng các khoản hợp lệ, đối chiếu trùng nguồn, tách ngày/miền/đài, dò trúng và xuất Excel theo mẫu. Bảng tổng phải truy ngược được về mã khoản trong đúng file phân tích ảnh hoặc TXT. Không tính trực tiếp từ bản đọc chưa lưu, tổng cũ hoặc số liệu mã hóa sẵn trong script. Có sửa cách đọc thì sửa file phân tích liên quan và tính lại từ cả hai file.
+
+Hai file dùng JSON UTF-8, số đánh lưu dưới dạng chuỗi để giữ số 0 đầu. Không có nguồn của một loại vẫn tạo file phân tích ghi rõ trạng thái; thiếu nội dung không được coi là tổng bằng 0. Các giả định trong hai file phải được đưa sang đúng ô đầu vào và kết quả tô vàng trong Excel. Chi tiết trường cần lưu nằm trong hướng dẫn chính.
 
 ## Theo dõi thư mục đang cập nhật
 

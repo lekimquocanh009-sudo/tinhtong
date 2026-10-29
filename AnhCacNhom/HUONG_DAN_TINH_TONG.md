@@ -41,6 +41,15 @@ Người dùng xác nhận ngày 28/10/2026: **“hãy tính tiền”** là câ
 15. **Xác nhận sửa ngày 29/10/2026 ưu tiên bản hiểu cũ: AB3 số chỉ miền Bắc A×3, B×1; miền Nam/Trung A×1, B×1.** A dò ba số cuối giải6, B dò ba số cuối đặc biệt. Ví dụ Nam361 AB25 =25+25=50; Bắc691 AB10 =10×3+10=40. Mỗi giải A/B trúng cộng mức gốc, không nhân lại hệ số ghi.
 16. **Điểm không rõ được tạm tính theo cách hiểu hợp lý và tô vàng**: lưu trường chưa chắc, cách hiểu chọn và căn cứ. Tô vàng ô đầu vào và kết quả chịu ảnh hưởng ở bảng tổng/chi tiết trúng, thêm chú giải “Ô vàng = tạm đọc/tính theo ngữ cảnh”. Các dòng hoàn toàn không có nội dung để suy ra số/mức được tô vàng và ghi chưa tính được, không tự bịa khoản đặt. Không đánh dấu một cách đọc đã được người dùng xác nhận là còn nghi vấn.
 
+## Xác nhận từ bảng chuẩn Hạ ngày 29/10/2026
+
+- **Đài chính/phụ thứ Năm:** theo quy ước người dùng, An Giang là đài chính; **2ĐP = Tây Ninh + Bình Thuận**. Không suy đài chính theo thứ tự hiển thị trên trang kết quả. Bỏ đánh dấu giả định ở các khoản 2ĐP đã được xác nhận.
+- **Đá thường:** số cặp trúng tại một đài = **min(số lần về con thứ nhất, số lần về con thứ hai)**. Bắc52–49 đá2, mỗi con về2 lần =>2 cặp × mức2 =4. Không chặn một cặp tối đa1 lần và không lấy tích2×2 thành4 cặp. Một con về1 lần, con kia về2 lần thì vẫn chỉ1 cặp. Giữ từng lần ghép và giải đối chiếu, không tái dùng một lần về cho nhiều cặp cùng số.
+- Trung TT10, ảnh16:58:38: **Quảng Bình57–75 đá thường1**, không phải Quảng Trị + Quảng Bình ĐX1. Dòng này L32, bỏ ĐX2đ1; tổng Trung L438, ĐX2đ0, ĐX3đ1.
+- Bắc TT11, ảnh17:49:20: 52 về G4 4352 và G5 2452;49 về G5 7149 và G7 49. Tr đá4, tổng Bắc Tr đá7.
+- Nam khớp bảng chuẩn: A/B2306 L530 ĐX2đ5 ĐX3đ2 Tr65. Trung A/B750 L438 Tr33. Bắc A/B843 L227 Tr108.
+- Tổng ghi5094, ĐX2đ5, ĐX3đ3; Lô/A/B trúng206, đá trúng riêng7. Bản trước5092/ĐX2đ6/đá trúng5 đã sửa. Sửa file phân tích ảnh rồi đọc lại cả hai file để tính; không dùng tổng chuẩn thay nguồn.
+
 ## Công thức
 
 ```text
@@ -107,18 +116,41 @@ Phương Vân, ảnh 15-48-57 (phiếu miền Nam số 10):
 
 ## Quy trình
 
-1. Đếm ảnh và kiểm kê toàn bộ TXT thực tế trong từng nhóm; file bao-cao JSON là nhật ký tải, không phải số liệu cần cộng. Đếm tin duy nhất sau khi loại các bản xuất lặp và ghi số tin chưa đọc được.
-2. Kiểm tra trùng file SHA-256 và ảnh chụp lại cùng phiếu; chỉ bỏ khi có bằng chứng, giữ ảnh gốc.
-3. Đọc từng phiếu, tách miền, đài và từng loại lô/A/B/đá thường/đá xiên.
-4. Phân biệt chữ trên mặt phiếu với chữ hằn từ mặt sau; bỏ số đã gạch thay thế.
-5. Không cộng số đánh, ngày tháng, số bàn và số thứ tự phiếu.
-6. Giữ mức ghi gốc và công thức thành phần; không chỉ lưu tổng.
-7. Đọc chưa rõ thì phóng to; nếu vẫn chưa rõ, chọn cách đọc hợp lý có căn cứ, ghi giả định và tô vàng ô đầu vào/kết quả liên quan; tiếp tục tính và dò. Nguồn hoàn toàn thiếu nội dung thì tô vàng, ghi chưa tính được.
-8. Cộng từng ảnh và từng tin chữ, từng miền trong nhóm; sau đó tổng từng miền của các nhóm hiện có để đối chiếu. Giữ riêng tổng từ ảnh và tổng bổ sung từ TXT.
-9. Kiểm tra tổng các miền khớp tổng nhóm, mỗi ảnh/tin đặt chỉ được tính một lần; không lấy tổng nhóm cũ cộng nối vào bộ nguồn mới.
-10. Lưu kết quả trực tiếp trong AnhCacNhom, giữ nguyên ảnh gốc.
-11. Tự tra kết quả đúng ngày/đài và dò từng khoản, kể cả số về nhiều lần, A/B 3 số và các cặp đá; đối chiếu tổng trúng theo miền và nhóm.
-12. Xuất Excel theo mẫu, điền chi tiết phần trúng và nguồn kết quả, kiểm tra công thức và bố cục trước khi gửi.
+**Quy trình mới được người dùng chốt ngày 29/10/2026: làm xong và lưu từng bước, sau đó mới tính tổng từ hai file.** Áp dụng riêng cho từng nhóm và từng ngày, không trộn nhiều ngày.
+
+### Bước 1 — Phân tích ảnh và ghi thành một file
+
+- Kiểm kê tất cả ảnh thực tế, ghi tên file, SHA-256, ngày/giờ và mã nguồn. File `bao-cao*.json` chỉ là nhật ký tải.
+- Đọc hết từng ảnh; phóng to chỗ mờ, phân biệt chữ mặt sau và số bị gạch. Đọc phạm vi mức ghi chung cho cả nhóm số trước khi tách khoản; không gán mỗi dòng một loại.
+- Ghi từng số/cặp, loại Lô/A/B/AB/XC/đá, mức gốc, miền, tên/số đài và hệ số áp dụng. Giữ các dòng đặt lặp riêng, không chỉ ghi tổng ảnh.
+- Ghi cả ảnh tổng/biên nhận bị loại, ảnh trùng có bằng chứng, chỗ tạm đọc và phần hoàn toàn không đọc được, cùng lý do.
+- Lưu thành **một file** `AnhCacNhom/PHAN_TICH_ANH_<nhom>_<ngay>.json`, rồi kiểm tra file đã lưu trước khi sang bước 2. Giữ nguyên ảnh nguồn.
+
+### Bước 2 — Phân tích tin nhắn TXT và ghi thành một file riêng
+
+- Đọc toàn bộ TXT đang tồn tại, gồm mọi lượt xuất. Giữ giờ gửi, người gửi nếu có và nguyên văn nội dung từng tin.
+- Tách từng khoản đặt thành số/cặp, mức gốc, loại, miền và đài. Ghi rõ giả định nếu suy từ tin trước/sau.
+- Đánh dấu riêng tin `[Ảnh]`, nhãn dán, trò chuyện, thu hồi, tin trích lại, bản xuất trùng và tin không đọc được. Thiếu nội dung không đồng nghĩa không liên quan.
+- Đối chiếu với file phân tích ảnh ở bước 1. Khoản có bằng chứng trùng ảnh phải ghi `duplicate_of` trỏ về mã nguồn ảnh và nêu bằng chứng; không tự xóa khoản vì cùng số hoặc cùng giờ.
+- Lưu thành **một file khác** `AnhCacNhom/PHAN_TICH_TXT_<nhom>_<ngay>.json`, rồi kiểm tra file đã lưu. Giữ nguyên TXT nguồn.
+
+### Nội dung tối thiểu của hai file phân tích
+
+- Thông tin nhóm, ngày dữ liệu, loại nguồn và kiểm kê tên file/hash hiện tại.
+- `records`: mã khoản duy nhất, mã/đường dẫn nguồn, ngày/giờ, nội dung đọc được hoặc nguyên văn tin, số/cặp, loại, mức ghi gốc, phạm vi mức chung, miền/đài, hệ số và phép tính thành phần.
+- `assumed_fields` và ghi chú: trường nào tạm hiểu, cách đọc chọn và căn cứ; phân biệt với xác nhận trực tiếp của người dùng.
+- `skipped`, `duplicates`, `pending`: nguồn không cộng, bằng chứng trùng và nội dung còn thiếu. Mỗi ảnh/tin trong kiểm kê phải có trạng thái xử lý.
+- Dùng JSON UTF-8 trình bày có xuống dòng; số đánh lưu dạng chuỗi, ví dụ `"04"`, để giữ số 0 đầu.
+- Không có ảnh hoặc không có TXT vẫn lưu file tương ứng ghi rõ không có nguồn. Nếu nguồn lỗi/thiếu nội dung, ghi chưa tính được; không biến thành số 0 hoặc tự tạo khoản đặt.
+
+### Bước 3 — Tính tổng từ cả hai file, dò trúng và xuất Excel
+
+- Đọc lại **cả hai file đã lưu trên đĩa**. Kiểm tra chúng khớp nhóm/ngày và kiểm kê nguồn hiện tại; cập nhật bước phân tích liên quan nếu nguồn đã đổi.
+- Chỉ lấy các khoản hợp lệ từ hai file để tính. Đối chiếu trùng giữa ảnh và TXT bằng mã nguồn/bằng chứng; mỗi khoản được cộng đúng một lần.
+- Cộng riêng phần ảnh, phần TXT và tổng hai phần theo từng nhóm/ngày/miền. Giữ riêng ĐX 2đ và ĐX 3đ. Không dùng tổng cũ hoặc bản đọc chưa lưu trong bộ nhớ/script để thay thế hai file.
+- Mỗi khoản ở bảng tổng và Excel phải truy ngược về mã khoản trong file phân tích ảnh hoặc TXT. Nếu phát hiện đọc sai, sửa file phân tích gốc rồi tính lại từ cả hai file.
+- Dò đủ từng số và cặp đúng ngày, miền, đài theo quy tắc đã chốt; lưu giải đối chiếu. Kiểm tra tổng các miền khớp tổng nhóm và tổng hai loại nguồn; giữ riêng phần trúng đá.
+- Xuất Excel theo mẫu, điền kết quả trúng, đưa giả định vào đúng ô đầu vào và kết quả tô vàng, ghi rõ phần chưa tính/chưa dò. Kiểm tra công thức và xem ảnh dựng trước khi gửi.
 
 
 
