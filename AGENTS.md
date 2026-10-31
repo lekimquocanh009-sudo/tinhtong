@@ -21,6 +21,12 @@ Các script `calc_txt27.mjs`, `build_txt27_excel.mjs` và các script ngày khá
 
 Lưu quy tắc mới người dùng xác nhận vào `AnhCacNhom/HUONG_DAN_TINH_TONG.md` để dùng cho lần tiếp theo. Phân biệt quy tắc chung với ngoại lệ chỉ áp dụng cho một phiếu/ngày.
 
+## Số gạch X là số đã xóa
+
+Người dùng xác nhận ngày30/10/2026: số bị gạch X trên phiếu phải bỏ, không cộng ghi và không dò trúng. Nếu số đó nằm trong nhóm đá/ĐX, bỏ mọi cặp có số bị xóa rồi tạo lại cặp từ các số còn hiệu lực. Giữ thông tin số đã xóa trong bản phân tích để đối chiếu; xác nhận trực tiếp không đánh dấu là giả định.
+
+Riêng Vĩnh An12, ảnh29/10 lúc16:09:51 (ANH-03): 82 ở cụm90,82,92 ĐX1 bị gạch X. Cụm cuối chỉ còn90–92 ĐX1. Tổng phiếu ĐX2đ5, ĐX3đ0; không còn khoản trúng82–92 đã tính nhầm. Quy tắc ghép hai cặp trúng khi hai số cùng về hai đài vẫn giữ cho các cặp còn hiệu lực.
+
 ## Xác nhận mới từ bảng chuẩn Hạ 29/10/2026
 
 - Thứ Năm: An Giang chính; 2ĐP = Tây Ninh + Bình Thuận theo quy ước người dùng.
@@ -28,6 +34,8 @@ Lưu quy tắc mới người dùng xác nhận vào `AnhCacNhom/HUONG_DAN_TINH_
 - Trung ảnh16:58:38 dòng57–75 là đá thường1 tại một đài Quảng Bình; không phải ĐX hai đài.
 
 ## Quy trình ba bước bắt buộc
+
+ĐX theo xác nhận Vĩnh An12 ngày29/10: trong cùng cặp đặt còn hiệu lực, mỗi lần về chỉ ghép một lần trên toàn phạm vi đài chọn. Ví dụ về cách ghép: 82–92 ĐX1 AG+BT, nếu cặp có hiệu lực và cảhai số về ở cảhai đài =>2 cặp, mức trúng2, không tính4 tổ hợp đài. Riêng ảnhANH-03, người dùng xác nhận30/10 số82 đã xóa nên ví dụ này không phải khoản trúng thực tế của phiếu. Cho phép cặp cùng đài và chéo đài trong phạm vi chọn.
 
 Người dùng xác nhận ngày 29/10/2026: **phân tích ảnh → ghi một file; phân tích tin nhắn TXT → ghi một file khác; sau đó tính tổng từ cả hai file**. Thực hiện tuần tự cho từng nhóm/ngày:
 
@@ -39,6 +47,6 @@ Hai file dùng JSON UTF-8, số đánh lưu dưới dạng chuỗi để giữ s
 
 ## Theo dõi thư mục đang cập nhật
 
-**Trạng thái mới nhất 29/10/2026: người dùng đã yêu cầu dừng, lịch theo dõi đã bị xóa. Không tự bật lại. Chỉ thực hiện nhóm được người dùng yêu cầu trực tiếp, như Vĩnh An.** Phần dưới ghi lại quy ước của lịch cũ.
+**Trạng thái mới nhất 30/10/2026: người dùng đã yêu cầu dừng lịch theo dõi, không tự bật lại. Khi người dùng yêu cầu tính cho đợt mới, tính các nhóm trong đợt, bao gồm Lực ngày 30/10; yêu cầu bỏ Lực trước đó chỉ áp dụng ngày cũ đã tính.** Phần dưới ghi lại quy ước của lịch cũ.
 
-Người dùng yêu cầu cứ có file/nhóm được cập nhật trong `AnhCacNhom` thì tính và dò cho từng người, xuất Excel. **Bỏ qua Riêng Lực** vì đã tính rồi, cho tới khi người dùng đổi yêu cầu. Heartbeat của chat đang kiểm tra mỗi 5 phút. Lưu kiểm kê tên file, SHA-256/nội dung TXT vào `AnhCacNhom/NHAT_KY_THEO_DOI.json`; không có thay đổi thì im lặng. Có thay đổi thì tính lại nhóm/ngày liên quan từ từng nguồn, không cộng nối tổng cũ. Chỉ báo khi có kết quả mới, thay đổi tổng/trúng hoặc lỗi cần xử lý. Người dùng đang thêm file dần nên kiểm kê lại trước khi chốt đợt; không giữ nguyên danh sách nhóm từ đầu lượt làm việc.
+Quy ước lịch cũ: lưu kiểm kê tên file, SHA-256/nội dung TXT vào `AnhCacNhom/NHAT_KY_THEO_DOI.json`; có thay đổi thì tính lại nhóm/ngày liên quan từ từng nguồn, không cộng nối tổng cũ. Lịch hiện đã dừng. Ngày 30/10 người dùng xác nhận tính Lực bình thường cho ngày mới.

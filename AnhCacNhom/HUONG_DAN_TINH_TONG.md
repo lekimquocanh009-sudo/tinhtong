@@ -1,5 +1,10 @@
 # Hướng dẫn cộng lô, A/B và đá xiên từ ảnh và TXT theo nhóm và miền
 
+## Xác nhận riêng bảng ba phần Trà Vinh ngày 30/10/2026
+
+- Với bảng ảnh ba phần người dùng gửi ngày 31/10, “2 đài phụ” là **Vĩnh Long và Bình Dương**; không tự áp dụng xác nhận này cho bảng khác.
+- Tại cột A của “xỉu chủ 3 đài”, hai ô hiển thị **10** và **30** được người dùng xác nhận là các số ba chữ số **010** và **030**. Giữ số 0 đầu và dò A ở giải 6. Các khoản này không còn là giả định.
+
 ## Câu lệnh dùng lại
 
 Người dùng xác nhận ngày 28/10/2026: **“hãy tính tiền”** là câu lệnh yêu cầu tự đọc lại ảnh và TXT của từng nhóm hiện có trong thư mục này, tính theo các quy tắc đã chốt, **dò số trúng luôn** và **xuất Excel theo mẫu đã dùng với đầy đủ kết quả trúng**. Không cần đợi yêu cầu dò số hoặc xuất Excel riêng. Quy trình đầy đủ nằm trong `../AGENTS.md`.
@@ -50,6 +55,19 @@ Người dùng xác nhận ngày 28/10/2026: **“hãy tính tiền”** là câ
 - Nam khớp bảng chuẩn: A/B2306 L530 ĐX2đ5 ĐX3đ2 Tr65. Trung A/B750 L438 Tr33. Bắc A/B843 L227 Tr108.
 - Tổng ghi5094, ĐX2đ5, ĐX3đ3; Lô/A/B trúng206, đá trúng riêng7. Bản trước5092/ĐX2đ6/đá trúng5 đã sửa. Sửa file phân tích ảnh rồi đọc lại cả hai file để tính; không dùng tổng chuẩn thay nguồn.
 
+## Số bị gạch X trên phiếu
+
+- Người dùng xác nhận ngày30/10/2026: **gạch X có nghĩa xóa số đó, không tính số bị xóa**. Không đọc nét gạch thành phần của chữ số hoặc giữ số đó vì vẫn nhìn thấy bên dưới.
+- Với đá/ĐX, loại số bị xóa rồi tạo lại các cặp từ số còn hiệu lực. Bỏ cả phần ghi và phần trúng của mọi cặp chứa số đã xóa. Ghi số đã xóa cùng căn cứ trong bản phân tích; xác nhận người dùng không còn là ô tạm đọc.
+- Vĩnh An12 ảnh29/10 lúc16:09:51, ANH-03: cụm cuối90,82,92 ĐX1, số82 bị gạch X => **chỉ còn90–92 ĐX1**. Toàn phiếu:90–91 ĐX2 +91–92 ĐX2 +90–92 ĐX1 = **ĐX2đ5, ĐX3đ0**, không có trúng đá. Bỏ cách tính cũ7 điểm và khoản trúng82–92 mức2 đã cộng nhầm.
+- Tổng nhóm sau sửa: Lô1755, A/B3515, tổng ghi5270; ĐX2đ16, ĐX3đ0; Lô trúng553, A/B0, đá thường trúng15, ĐX trúng0. Những giả định khác về mức lô/đài/tin hủy giữ riêng.
+
+## Tin nhắn hủy khoản đặt
+
+- Người dùng xác nhận: người nhắn kêu bỏ thì bỏ khoản đó, không giữ nguyên khoản đã được yêu cầu hủy trong tổng.
+- Đối chiếu ảnh/tin được trích để loại đúng khoản. Nếu bản xuất chỉ còn nhãn hình ảnh, phải ghi rõ cách ghép tạm theo ngữ cảnh và tô vàng phần nguồn bị loại cùng tổng ghi/trúng chịu ảnh hưởng; không nhận là người dùng đã xác nhận mã ảnh khi họ chỉ xác nhận ý định hủy.
+- Riêng Vĩnh An12 nguồn29/10, tin17:09:13: tạm gắn với ảnh gần nhất17:08:33, phiếu25,24,35,64,65,85 AB10/lô5 ba đài Trung. Đây là ghép tạm của trợ lý, không phải quy tắc luôn hủy ảnh gần nhất cho mọi trường hợp.
+
 ## Công thức
 
 ```text
@@ -78,6 +96,10 @@ Dò A: 3 số cuối từng số giải 6; dò B: 3 số cuối giải đặc bi
 Ví dụ ảnh Chị Chín 18-03-24: 13 số lô 2 = 26; hai cặp đá 1n = 2 × 1 × 2 = 4 lô; tổng lô ảnh = **30**.
 
 ## Cột đá xiên
+
+**Sửa ngày30/10:** ví dụ82–92 ở dưới chỉ minh họa quy tắc ghép nếu cặp còn hiệu lực. Trong ảnhANH-03 của Vĩnh An12, người dùng đã xác nhận82 gạch X là xóa; cặp82–92 không được ghi hoặc tính trúng thực tế.
+
+- Xác nhận mới của người dùng khi tính Vĩnh An12 ngày29/10: **cặp82–92 ĐX1 An Giang+Bình Thuận, cảhai số về ở cảhai đài, chỉ trúng2 điểm**. Trong cùng một cặp đặt, mỗi lần về chỉ ghép một lần; không tính bốn tổ hợp đài. ĐX được ghép cùng hoặc chéo trong phạm vi đài chọn; số cặp ghép = min(tổng số lần về từng con trong phạm vi). Mỗi cặp đặt riêng có lượt ghép riêng.
 
 - Ghi riêng số cặp, mức đá và tên/số đài.
 - Bảng hiện cộng **mức ghi mỗi cặp**: số cặp × mức ghi, chưa quy đổi theo số đài/cặp đài.
@@ -161,6 +183,7 @@ Phương Vân, ảnh 15-48-57 (phiếu miền Nam số 10):
 
 - Người dùng xác nhận “hãy tính tiền - những người đã tính” nghĩa là **bỏ qua người đã tính, tính người còn lại**. Không hiểu dấu trừ này thành yêu cầu tính lại các nhóm đã hoàn tất.
 - Lượt này bỏ qua Cua, Mén 2, Phú Quý, Riêng 10 và Riêng Lực; kiểm tra nguồn của các nhóm còn lại. Nguồn chỉ có báo lỗi xuất 0 tin và không có ảnh thì ghi chưa tính được, không tự tạo tổng bằng 0.
+- Ngày 30/10/2026 người dùng xác nhận: chỉ bỏ Lực của ngày trước đã tính; **Lực ngày mới tính bình thường**, bao gồm dữ liệu 30/10. Không áp dụng danh sách bỏ qua ngày 29/10 cho ngày mới.
 
 ## Rà soát Lực ngày 29/10/2026 cho nguồn 28/10/2026
 
