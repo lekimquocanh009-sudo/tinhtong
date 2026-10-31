@@ -1,5 +1,31 @@
 # Hướng dẫn cộng lô, A/B và đá xiên từ ảnh và TXT theo nhóm và miền
 
+## Rà ảnh từng dòng để giảm nhầm chữ số — bổ sung31/10/2026
+
+Đây là bước kiểm tra trong quy trình đọc ảnh, không phải quy tắc tự đổi số. Lỗi Lực72 AB50 bị đọc thành22 AB50 cho thấy tổng ghi vẫn có thể khớp khi đọc sai số.
+
+1. Đọc toàn phiếu để xác định cột, loại, mức chung và phạm vi đài. Đánh nhãn theo **mã ảnh + tên cột + số dòng**, không chỉ nói “dòng3” khi phiếu có nhiều cột. Không dùng một layout tọa độ cho ảnh khác hoặc ảnh đã đổi hướng/kích thước.
+2. Với ảnh nhỏ/mờ, số viết đè hoặc dễ lẫn2/7,5/9,0/6, tạo ảnh cắt riêng từng dòng. Giữ hai bản cạnh nhau: **phóng màu gốc** và **xám cân tương phản**. Luôn giữ ảnh gốc để đối chiếu; bản xám chỉ giúp quan sát, không phải bằng chứng mạnh hơn bản gốc. Không tạo lại, tô lại hoặc tự thêm nét chữ số.
+3. Đọc lượt đầu từ ảnh gốc và ghi bản đọc thô trước khi xem kết quả xổ số. Rà lượt hai trên từng ảnh cắt, ghi cách đọc riêng rồi so sánh. Việc một người/model đọc hai lượt không được gọi là hai bộ nhận dạng độc lập. Nếu còn hai cách đọc, lưu cả hai, chỉ ra nét chữ và số viết tương tự trong chính phiếu làm căn cứ chọn.
+4. So sánh cách viết chữ số của cùng người trong cùng ảnh: ví dụ7 ở72 đối chiếu71/78/87, chữ2 đối chiếu12/24. Không mặc định mọi7 phải có cùng nét, không đổi hàng loạt theo lỗi của một phiếu.
+5. Trước khi xuất Excel, rà lại ảnh cắt của **từng khoản trúng**, cùng các khoản có mức lớn và các chỗ đổi cách đọc. Kiểm tra độc lập **số – mức – loại – miền/đài – dòng lặp/gạchX**. Tổng khớp không chứng minh số đọc đúng; không lấy số trúng hay tổng khoanh để chọn cách đọc thuận kết quả.
+6. Lưu đường dẫn ảnh cắt, tọa độ và SHA-256 nguồn trong hồ sơ đối chiếu; ghi vào `image_review` của bản phân tích khi áp dụng cho lần tính mới. Có sửa số/mức/loại/đài thì sửa file phân tích liên quan, đọc lại cả hai file ảnh/TXT và tính/dò lại. Xác nhận cụ thể của người dùng luôn được ưu tiên.
+7. Vẫn tiếp tục tạm tính các khoản có căn cứ theo quy ước đã được cho phép: ghi chính xác trường chưa chắc, cách đọc chọn, căn cứ và phương án khác; tô vàng đúng ô đầu vào và ghi/trúng chịu ảnh hưởng. Không biến chỗ chưa đọc được thành0 và không tự dừng để hỏi lại các khoản có thể suy được.
+
+Công cụ hỗ trợ trong dự án: `prepare_image_review.py --source <ảnh> --layout <layout.json>`. Công cụ chỉ cắt/phóng và tạo ảnh đối chiếu, **không OCR hoặc tự chốt số**. `image_review_layout_luc30.json` chỉ dùng cho ảnh cắt Lực30/10 kích thước525×1185; với phiếu khác phải tạo layout theo ảnh thực tế. Hồ sơ `manifest.json` lưu nguồn, hash, tọa độ và các trường bản đọc chờ kiểm tra.
+
+## Bảng chuẩn Lực ngày 30/10/2026 — sửa ngày 31/10
+
+- Người dùng gửi bảng chuẩn và xác nhận **không có số 22**. Đối chiếu phần ảnh sổ còn lưu: dòng đầu cột AB 3 đài là **72 AB50**, đã đọc nhầm thành 22 AB50. Giữ khoản 72 và mức ghi, không xóa cả dòng.
+- Hai dòng cùng ảnh phải đọc là **95 lô15 ba đài** (bản cũ 96) và **45 A5 ba đài** (bản cũ 65). Đây là sửa cách đọc cho phiếu Lực 30/10, không áp dụng đổi số cho phiếu khác.
+- Sau sửa, Nam A/B1330 L535 ĐX2đ5 ĐX3đ0 trúng66; Trung A/B40 L182 ĐX2đ5 ĐX3đ0 trúng34; Bắc A/B85 L445 trúng113. Tổng ghi2617, ĐX2đ10 ĐX3đ0, trúng213, đá trúng0. Các tổng chỉ dùng đối chiếu, phải tính lại từ từng khoản.
+- Nam sửa trúng106 thành66: bỏ khoản trúng nhầm22 B50 và65 A5, thêm95 lô15 Vĩnh Long. Không dùng22 trong danh sách số đặt/trúng của phiếu này. Số22 trong kết quả xổ số Vĩnh Long và số thứ tự dòng không phải khoản đặt.
+
+## Xác nhận riêng ảnh bổ sung ngày 31/10/2026
+
+- Người dùng xác nhận ảnh chụp 6 tin “Mn bao 2đ vl, bd”, “Mt bao 2đ”, “Mb bao”, có mức cuối 92k/184k, thuộc **ngày 30/10/2026**, để nhóm **Ảnh bổ sung**.
+- Đây chỉ là xác nhận ngày và nhóm của ảnh này. Việc đọc mức cuối tin thành điểm và đối chiếu hai đài Trung vẫn phải ghi rõ căn cứ và tô vàng nếu chưa có xác nhận riêng cho phiếu.
+
 ## Xác nhận riêng bảng ba phần Trà Vinh ngày 30/10/2026
 
 - Với bảng ảnh ba phần người dùng gửi ngày 31/10, “2 đài phụ” là **Vĩnh Long và Bình Dương**; không tự áp dụng xác nhận này cho bảng khác.

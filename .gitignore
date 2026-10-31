@@ -1,7 +1,9 @@
-# Repo chỉ lưu các tài liệu hướng dẫn được chọn.
+# Repo lưu tài liệu và công cụ đối chiếu ảnh được chọn.
 *
 !/.gitignore
 !/README.md
 !/AGENTS.md
 !/AnhCacNhom/
 !/AnhCacNhom/HUONG_DAN_TINH_TONG.md
+!/prepare_image_review.py
+!/image_review_layout_luc30.json
