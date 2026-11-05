@@ -228,6 +228,7 @@ Phương Vân, ảnh 15-48-57 (phiếu miền Nam số 10):
 - Nếu chưa dò kết quả, để trống các cột Tr đá/Tr và ghi rõ chưa dò; không điền 0 thay cho chưa có dữ liệu.
 - ĐX 2đ và ĐX 3đ giữ mức gốc theo từng cặp. Không gộp hai cột khi tổng hợp.
 - Bảng Excel: một sheet mỗi nhóm; ba khối Nam, Trung, Bắc đặt cạnh nhau, chữ tiêu đề đỏ, lưới mảnh, hàng cộng có nền xanh ngọc như ảnh mẫu.
+- **Phân cách hàng nghìn bằng dấu chấm** trong chat, báo cáo và phần hiển thị Excel. Ví dụ viết **1.000**, **94.010**, **1.000.000**. Áp dụng cho tiền, điểm và số lượng. Trong Excel, giữ ô ở kiểu số hoặc công thức và dùng thiết lập hiển thị số tiếng Việt. Giữ nguyên các số đánh như `04` và `083`.
 
 ## Vĩnh An, nguồn ngày 28/10/2026
 
